@@ -1,7 +1,6 @@
 package com.tao.tools;
 import javax.imageio.ImageIO;
 
-import org.springframework.util.Base64Utils;
 
 import com.google.zxing.WriterException;
 
@@ -11,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Base64;
 import java.util.Date;
 import java.util.Random;
 
@@ -121,7 +121,7 @@ public class ImageCodeUtils {
 			BufferedImage image = buffImg;
 			ImageIO.write(image, "png", out);
 			byte[] bytes = out.toByteArray();
-			return Base64Utils.encodeToString(bytes);
+			return Base64.getEncoder().encodeToString(bytes);
 		} 
 
 	    public void write(String path) throws IOException {
