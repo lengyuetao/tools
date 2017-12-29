@@ -44,5 +44,9 @@ public class StringUtils {
     public static void main(String[] args) {
         DecimalFormat b=new DecimalFormat("00000");
         System.out.println(b.format(31));
+
+        String content = "NIUBCoin系统用户账号注册:{}";
+
+        System.out.println(String.format(content,1));
     }
 }
