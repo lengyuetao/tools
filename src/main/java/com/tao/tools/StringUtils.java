@@ -41,6 +41,15 @@ public class StringUtils {
         return bytes;
     }
 
+    /**
+     * 替换手机号4-7位为星*号
+     * @param phone
+     * @return
+     */
+    public static String formatPhone(String phone){
+        return  phone.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
+    }
+
     public static void main(String[] args) {
         DecimalFormat b=new DecimalFormat("00000");
         System.out.println(b.format(31));
