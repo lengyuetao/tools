@@ -126,4 +126,16 @@ public class RegexUtils {
     public static boolean isIPAddr(String ipAddr) {
         return Pattern.matches(REGEX_IP_ADDR, ipAddr);
     }
+
+
+    public static String serialize(String value) {
+        if(isMobile(value)){
+            return value.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
+        }
+        if(isEmail(value)){
+            return value.replaceAll("(\\w?)(\\w+)(\\w)(@\\w+\\.[a-z]+(\\.[a-z]+)?)", "$1*****$3$4");
+        }
+        return null;
+    }
+
 }
