@@ -49,4 +49,22 @@ public class CookieUtils {
 		}
 	
 	}
+
+	/**
+	 * 获取value
+	 * @param request
+	 * @param keyName
+	 * @return
+	 */
+	public static String getValueByKey(HttpServletRequest request,String keyName){
+		Cookie[] cookies= request.getCookies();
+		String value=null;
+		for(Cookie cookie:cookies){
+			if(cookie != null && keyName.equals(cookie.getName())){
+				value=cookie.getValue();
+				break;
+			}
+		}
+		return value;
+	}
 }
