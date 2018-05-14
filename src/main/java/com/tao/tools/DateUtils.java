@@ -39,6 +39,29 @@ public class DateUtils {
         return null;
     }
 
+    /**
+     * long类型时间戳转换时间字符串
+     * @param str
+     * @param formate
+     * @return
+     */
+    public static String longToDateStr(Long str,String formate){
+        SimpleDateFormat sf=new SimpleDateFormat(formate);
+        return sf.format(new Date(str));
+    }
+
+    /**
+     * long 类型时间戳转换时间类型
+     * @param str
+     * @returne
+     */
+    public static Date longToDat(Long str){
+        if(str!=null){
+            return new Date(str);
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         System.out.println(formatDate(new Date(),"yyyy-MM-dd HH:mm:ss"));
         System.out.println(strToDate("2017-04-03 23:22:33","yyyy-MM-dd"));
