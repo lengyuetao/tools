@@ -1,5 +1,6 @@
 package com.tao.tools;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
@@ -49,6 +50,29 @@ public class StringUtils {
     public static String formatPhone(String phone){
         return  phone.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
     }
+
+
+    /**
+     * 转码
+     * @param str
+     * @return
+     */
+    public static String transCode(String str){
+        return transCode(str,"UTF-8");
+    }
+
+    public static String transCode(String str,String charset){
+        try {
+            if(org.apache.commons.lang.StringUtils.isEmpty(str)){
+                return null;
+            }
+            return new String(str.getBytes("iso8859-1"),charset);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
+
 
     public static void main(String[] args) {
         DecimalFormat b=new DecimalFormat("00000");
