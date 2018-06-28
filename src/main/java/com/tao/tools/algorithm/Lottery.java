@@ -17,10 +17,10 @@ public class Lottery {
 
         Set<BigInteger> set=new LinkedHashSet<>();
 
-        int height=345000;
+        int height=687500;
         BigInteger h=null;
-        while(set.size()<56){
-            String res= HttpUtil.get(""+height);
+        while(set.size()<66){
+            String res= HttpUtil.get("http://47.75.45.95:25884/api/v1/block/details/height/"+height);
             JSONObject json= JSON.parseObject(res);
             if(json.get("Desc").equals("SUCCESS")&&json.getInteger("Error")==0){
                 String hash=json.getJSONObject("Result").getString("Hash");
@@ -42,7 +42,7 @@ public class Lottery {
 
     public static BigInteger math(String hash){
         BigInteger b = new BigInteger(hash,16);
-        BigInteger a=new BigInteger("79");
+        BigInteger a=new BigInteger("138");
 
         return b.mod(a).add(new BigInteger("1"));
 
