@@ -2,6 +2,7 @@ package com.tao.tools.date;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -42,5 +43,47 @@ public class DateUtils {
     public static void main(String[] args) {
         System.out.println(formatDate(new Date(),"yyyy-MM-dd HH:mm:ss"));
         System.out.println(strToDate("2017-04-03 23:22:33","yyyy-MM-dd"));
+    }
+
+    //获取指定月份的天数
+    public static int getDaysByYearMonth(int year, int month) {
+
+        Calendar a = Calendar.getInstance();
+        a.set(Calendar.YEAR, year);
+        a.set(Calendar.MONTH, month );
+        a.set(Calendar.DATE, 1);
+        a.roll(Calendar.DATE, -1);
+        int maxDate = a.get(Calendar.DATE);
+        return maxDate;
+    }
+
+    /**
+     * 遍历指定月份的每天日期
+     * @param date yyyy-MM
+     */
+    public void getEveryDayDate(String date){
+        SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM");
+        Date time=null;
+        try {
+            time=sf.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(time);
+        int year = cal.get(Calendar.YEAR);
+        System.out.println("年份："+year);
+        int m = cal.get(Calendar.MONTH);
+        System.out.println("月份："+m);
+        int dayNumOfMonth = getDaysByYearMonth(year, m);
+        cal.set(Calendar.DAY_OF_MONTH, 1);// 从一号开始
+
+        for (int i = 0; i < dayNumOfMonth; i++, cal.add(Calendar.DATE, 1)) {
+            Date d = cal.getTime();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String df = simpleDateFormat.format(d);
+            System.out.println(df);
+        }
     }
 }
