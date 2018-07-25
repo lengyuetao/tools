@@ -1,5 +1,6 @@
 package com.tao.tools.date;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -9,6 +10,8 @@ import java.util.Date;
  * 时间工具类
  */
 public class DateUtils {
+
+    private static final String DEFAULT_FORMATE="yyy-MM-dd";
 
     /**
      * 格式化日期时间
@@ -84,6 +87,44 @@ public class DateUtils {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String df = simpleDateFormat.format(d);
             System.out.println(df);
+        }
+    }
+
+
+    /**
+     * 判断是否周末
+     * @param date
+     * @return
+     * @throws ParseException
+     */
+    public static boolean isWeekend(String date) throws ParseException {
+        return isWeekend(date,DEFAULT_FORMATE);
+    }
+
+    public static boolean isWeekend(String date,String format) throws ParseException {
+        DateFormat format1 = new SimpleDateFormat(format);
+        Date bdate = format1.parse(date);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(bdate);
+        if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    /**
+     * 判断是否周末
+     * @param date
+     * @return
+     * @throws ParseException
+     */
+    public static boolean isWeekend(Date date){
+        Calendar cal=Calendar.getInstance();
+        cal.setTime(date);
+        if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || cal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
