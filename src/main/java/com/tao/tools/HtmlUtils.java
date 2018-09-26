@@ -38,6 +38,9 @@ public class HtmlUtils {
     }
 
     public static String getTextFromHtml(String htmlStr){
+        if(null==htmlStr){
+            return "";
+        }
         htmlStr = delHTMLTag(htmlStr);
         htmlStr = htmlStr.replaceAll("&nbsp;", "");
         return htmlStr;
@@ -45,7 +48,6 @@ public class HtmlUtils {
 
     public static void main(String[] args) {
         String str="<p>火币世界は最新の公告に基づき、8月18日の11:48:26、everipedia&nbsp;(iq)チームがユーザーや取引所に通知しないまま、スマート契約を更新した。新しいスマート契約では、加入者がiqを振替する時に振込み額の0.1%を手数料として払わなければならないし、その一部の手数料は直接everipediaのチームに入る。ユーザーの権益を守るために、火コイングローバル局は、iqの提札を緊急停止した。iqチームのこの行为は、ブロックチェーンに违反して透明な契约の精神を公表し、取引所のユーザーの権利に影响して、プロジェクト侧と协议して、火币グローバル局は8月31日18:00に、1时的にiqティアドルを回复することを决定して、30日、9月30日には、iqのホーキングを缔めることになっています。</p><p><br></p>";
-
         String htm=getTextFromHtml(str);
         System.out.println(htm);
     }
